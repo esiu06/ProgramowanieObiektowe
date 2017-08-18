@@ -1,6 +1,5 @@
 package Circle2;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class Circle2test {
