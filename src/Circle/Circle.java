@@ -37,7 +37,7 @@ public class Circle {
 
     }
     public String toString(){
-        return "Circle[radius=" + _radius + ",color=" + _color + "]";
+        return String.format ("Circle[radius=" + _radius + ",color=" + _color + "]");
 
     }
 
