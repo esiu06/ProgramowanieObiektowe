@@ -1,6 +1,8 @@
 package ShapeAndCircleAdnRecAndSq;
 
 public class Square extends Rectangle {
+    private boolean side;
+
     public Square(){}
     public Square(double side){
         super(side, side);
@@ -21,6 +23,22 @@ public class Square extends Rectangle {
         super.setWidht(side);
         super.setLength(side);
     }
-    
 
+    @Override
+    public void setLength(double side) {
+        super.setWidht(side);
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("A Square with side=")
+                .append(getSide())
+                .append(" which is a subclass of ")
+                .append(super.toString());
+        return sb.toString();
+    }
+
+    public boolean getSide() {
+        return side;
+    }
 }
