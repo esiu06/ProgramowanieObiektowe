@@ -22,7 +22,7 @@ public class Shape {
         return _filled;
     }
 
-    public void setIsFilled(boolean filled) {
+    public void setFilled(boolean filled) {
         _filled = filled;
     }
 

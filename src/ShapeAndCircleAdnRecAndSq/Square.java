@@ -1,32 +1,33 @@
 package ShapeAndCircleAdnRecAndSq;
 
-public class Square extends Rectangle {
-    private boolean side;
-
-    public Square(){}
+public class Square extends Rectangle{
+    public Square() { }
     public Square(double side){
         super(side, side);
     }
     public Square(double side, String color, boolean filled){
         super(side, side, color, filled);
     }
-    public double getSeid() {
+
+    public double getSide(){
         return getLength();
     }
+
     public void setSide(double side){
-       super.setLength(side);
-        super.setWidht(side);
+        setLength(side);
+        setWidth(side);
     }
 
     @Override
-    public void setWidht(double side) {
-        super.setWidht(side);
+    public void setWidth(double side) {
+        super.setWidth(side);
         super.setLength(side);
     }
 
     @Override
     public void setLength(double side) {
-        super.setWidht(side);
+        super.setWidth(side);
+        super.setLength(side);
     }
 
     public String toString() {
@@ -35,10 +36,7 @@ public class Square extends Rectangle {
                 .append(getSide())
                 .append(" which is a subclass of ")
                 .append(super.toString());
-        return sb.toString();
-    }
 
-    public boolean getSide() {
-        return side;
+        return sb.toString();
     }
 }
