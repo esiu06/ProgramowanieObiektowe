@@ -1,88 +1,109 @@
 package GraNozycePapierKamien;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class NozycePapierKamien {
 
-    public enum Ruch {NOZYCE, PAPIER, KAMIEN, WYJSCIE}
+    public enum RuchGry {NOZYCE, PAPIER, KAMIEN, WYJSCIE}
+
     public enum StanGry {WYGRANA, REMIS, PRZEGRANA}
 
     public static void main(String[] args) {
-        System.out.println("Wybierz akcje\nn - nożyce\np - papier\nk - kamień\nq - wyjście z gry");
+
         Scanner sc = new Scanner(System.in);
+        RuchGry ruchKomputer = RuchGry.KAMIEN;
+        RuchGry ruchGracza = RuchGry.KAMIEN;
+        int remisy = 0;
+        int zwyciestwa = 0;
+        int przegrane = 0;
+        int iloscGier = 0;
 
         String gracz = "";
 
 
-        while (true) {
+        while (!ruchGracza.equals(RuchGry.WYJSCIE)) {
+            System.out.println("Podaj swój ruch:\nn - nożyce\np - papier\nk - kamień\nq = wyjście\n");
             String akcja = sc.nextLine();
 
-            int komp = (int) (Math.random() * 3);
-            Ruch ruchKomputer = Ruch.KAMIEN;
-            Ruch ruchGracza = Ruch.KAMIEN;
-
-            if (akcja.equals("n")) {
-                ruchGracza = Ruch.NOZYCE;
-                continue;
-            }
-            if (akcja.equals("p")) {
-                ruchGracza = Ruch.PAPIER;
-                continue;
-            }
-            if (akcja.equals("k")) {
-                ruchGracza = Ruch.KAMIEN;
-
-            }
-            if (akcja.equals("q")) {
-                break;
-            } else {
-                System.out.println("BŁĄD!!!!");
-                System.out.println("Wybierz akcje\nn - nożyce\np - papier\nk - kamień\nq - wyjście z gry");
-                continue;
+            switch (akcja.toLowerCase()) {
+                case "n":
+                    ruchGracza = RuchGry.NOZYCE;
+                    break;
+                case "k":
+                    ruchGracza = RuchGry.KAMIEN;
+                    break;
+                case "p":
+                    ruchGracza = RuchGry.PAPIER;
+                    break;
+                case "q":
+                    ruchGracza = RuchGry.WYJSCIE;
+                    break;
+                default:
+                    continue;
 
             }
+            Random rand = new Random();
 
-//            if(komp%3==0){
-////                ruchKomputer = Ruch.KAMIEN;
-//            }
-//            if (komp%3==1){
-//                ruchKomputer = Ruch.NOZYCE;
-//            }
-//            if(komp%3==2){
-//                ruchKomputer = Ruch.PAPIER;
-//            }
+            switch (rand.nextInt(3)) {
+                case 0:
+                    ruchKomputer = RuchGry.NOZYCE;
+                    System.out.println("Komputer wybrał nożyce\n");
+                    break;
+                case 1:
+                    ruchKomputer = RuchGry.KAMIEN;
+                    System.out.println("Komputer wybrał kamień\n");
+                    break;
+                case 2:
+                    ruchKomputer = RuchGry.PAPIER;
+                    System.out.println("Komputer wybrał papier\n");
+                    break;
+            }
+            StanGry wynik = ktoWygral(ruchGracza, ruchKomputer);
 
+            if(wynik.equals(StanGry.REMIS))
+                remisy++;
+            else if(wynik.equals(StanGry.WYGRANA))
+                zwyciestwa++;
+            else
+                przegrane++;
 
-        }//Statystyka
+            iloscGier++;
+        }
 
+        System.out.printf("Zagrałeś %d gier. Wygrałeś: %d razy (%f). Przegrałeś: %d (%f)",
+                iloscGier, zwyciestwa, (double)zwyciestwa/iloscGier*100, przegrane, (double)przegrane/iloscGier*100);
 
     }
-    public StanGry ktoWygral(Ruch ruchGracza, Ruch ruchKomputer){
-        if(ruchGracza.equals(Ruch.KAMIEN) && ruchKomputer.equals(Ruch.KAMIEN)){
+
+
+
+    public static StanGry ktoWygral(RuchGry ruchGracza, RuchGry ruchKomputer) {
+        if (ruchGracza.equals(RuchGry.KAMIEN) && ruchKomputer.equals(RuchGry.KAMIEN)) {
             return StanGry.REMIS;
         }
-        if(ruchGracza.equals(Ruch.KAMIEN) && ruchKomputer.equals(Ruch.PAPIER)){
+        if (ruchGracza.equals(RuchGry.KAMIEN) && ruchKomputer.equals(RuchGry.PAPIER)) {
             return StanGry.PRZEGRANA;
         }
-        if(ruchGracza.equals(Ruch.KAMIEN) && ruchKomputer.equals(Ruch.NOZYCE)){
+        if (ruchGracza.equals(RuchGry.KAMIEN) && ruchKomputer.equals(RuchGry.NOZYCE)) {
             return StanGry.WYGRANA;
         }
-        if(ruchGracza.equals(Ruch.PAPIER) && ruchKomputer.equals(Ruch.PAPIER)){
+        if (ruchGracza.equals(RuchGry.PAPIER) && ruchKomputer.equals(RuchGry.PAPIER)) {
             return StanGry.REMIS;
         }
-        if(ruchGracza.equals(Ruch.PAPIER) && ruchKomputer.equals(Ruch.KAMIEN)){
+        if (ruchGracza.equals(RuchGry.PAPIER) && ruchKomputer.equals(RuchGry.KAMIEN)) {
             return StanGry.WYGRANA;
         }
-        if(ruchGracza.equals(Ruch.PAPIER) && ruchKomputer.equals(Ruch.NOZYCE)){
+        if (ruchGracza.equals(RuchGry.PAPIER) && ruchKomputer.equals(RuchGry.NOZYCE)) {
             return StanGry.PRZEGRANA;
         }
-        if(ruchGracza.equals(Ruch.NOZYCE) && ruchKomputer.equals(Ruch.NOZYCE)){
+        if (ruchGracza.equals(RuchGry.NOZYCE) && ruchKomputer.equals(RuchGry.NOZYCE)) {
             return StanGry.REMIS;
         }
-        if(ruchGracza.equals(Ruch.NOZYCE) && ruchKomputer.equals(Ruch.PAPIER)){
+        if (ruchGracza.equals(RuchGry.NOZYCE) && ruchKomputer.equals(RuchGry.PAPIER)) {
             return StanGry.WYGRANA;
         }
-        if(ruchGracza.equals(Ruch.NOZYCE) && ruchKomputer.equals(Ruch.KAMIEN)){
+        if (ruchGracza.equals(RuchGry.NOZYCE) && ruchKomputer.equals(RuchGry.KAMIEN)) {
             return StanGry.PRZEGRANA;
         }
         return StanGry.REMIS;
