@@ -1,5 +1,7 @@
 package MyTime;
 
+
+
 /**
  * Created by Esiu on 2017-08-26.
  */
@@ -10,9 +12,13 @@ public class MyTime {
 
     public MyTime(){}
     public MyTime(int godzina, int minuta, int sekunda){
-        _godzina = godzina;
-        _minuta = minuta;
-        _sekunda = sekunda;
+       setTime (godzina, minuta, sekunda);
+    }
+
+    private void setTime(int godzina, int minuta, int sekunda) {
+        setGodzina(godzina);
+        setMinuta(minuta);
+        setSekunda(sekunda);
     }
 
     public int getGodzina() {
@@ -28,29 +34,91 @@ public class MyTime {
     }
 
     public void setGodzina(int godzina) {
-        _godzina = godzina;
-    }
 
+        if (godzina < 24 && godzina > 0) {
+            _godzina = godzina;
+        } else {
+            _godzina = -10000;
+        }
+    }
     public void setMinuta(int minuta) {
-        _minuta = minuta;
+
+        if(minuta<60 && minuta>0){
+            _minuta = minuta;
+        }else{
+            _minuta = -10000;
+        }
     }
 
     public void setSekunda(int sekunda) {
-        _sekunda = sekunda;
+
+        if(sekunda<60 && sekunda>0){
+            _sekunda = sekunda;
+        }else{
+            _sekunda = -10000;
+        }
     }
     public String toString() {
-        return ("HH:MM:SS");
+        return String.format("%02d:%02d:%02d",_godzina,_minuta,_sekunda);
     }
-    public MyTime nextSecunda(int sekunda){
-        return nextSecunda(getSekunda());
+
+    public MyTime nextSecunda(){
+
+        if(_sekunda != 59) {
+            _sekunda = _sekunda + 1;
+        }else{
+            nextMinuta();
+            _sekunda = 0;
+        }
+        return this;
     }
-    public MyTime nextMinuta(int minuta){
-        return nextMinuta(getMinuta());
+    public MyTime nextMinuta() {
+
+        if (_minuta != 59) {
+            _minuta = _minuta + 1;
+        } else {
+            nextGodzina();
+            _minuta = 0;
+        }
+        return this;
     }
-    public MyTime nextGodzina(int godzina){
-        return nextGodzina(getGodzina());
+    public MyTime nextGodzina(){
+
+        if(_godzina !=59) {
+            _godzina = (_godzina + 1) % 24;
+        }
+        return this;
     }
-    public MyTime previoisSecunda(int sekunda){
-        return previoisSecunda(getSekunda());
+
+    public MyTime previoisSecunda(){
+
+        if(_sekunda !=0){
+            _sekunda = _sekunda-1;
+        }else{
+            _sekunda = 59;
+            previoisMinuta();
+        }
+        return this;
+    }
+    public MyTime previoisMinuta(){
+
+        if(_minuta!=0){
+            _minuta = _minuta-1;
+        }else{
+            _minuta = 59;
+            previoisGodzina();
+        }
+        return  this;
+
+    }
+
+    private MyTime previoisGodzina() {
+
+        if(_godzina!=0){
+            _godzina = _godzina-1;
+        }else{
+            _godzina = 23;
+        }
+        return this;
     }
 }
