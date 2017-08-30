@@ -14,7 +14,9 @@ public class DanePogodowe extends Observable{
     public DanePogodowe(){}
 
     public void odczytyZmiennych(){
+
         setChanged();
+        notifyObservers();
     }
 
     public void ustawZmienne(float temperatura, float cisnienie, float wilgotnosc){

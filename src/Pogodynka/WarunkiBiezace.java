@@ -13,7 +13,7 @@ public class WarunkiBiezace implements IWyswietl,IObserwator {
 
     @Override
     public void wyswietl() {
-        System.out.printf("Aktualne dane: %f stC, %f %%, %f hPA", _temperatura, _cisnienie, _wilgotnosc);
+        System.out.printf("Aktualne dane: %f stC, %f hPA, %f %%", _temperatura, _cisnienie, _wilgotnosc);
     }
 
     @Override

@@ -7,7 +7,7 @@ public class Main {
 
         dp.ustawZmienne(11, 1030, 45);
 
-        Thread.sleep(10000);
+        Thread.sleep(5000);
 
         dp.ustawZmienne(13, 1033,50);
 
