@@ -1,4 +1,5 @@
 package GraRGB;
 
-public class TarczaDekorator {
+public abstract class TarczaDekorator extends Tarcza {
+    public abstract String pobierzOpis();
 }
