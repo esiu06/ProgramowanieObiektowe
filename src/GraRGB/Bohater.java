@@ -1,6 +1,12 @@
 package GraRGB;
 
 public class Bohater {
-    String imie;
+    private String _imie;
+    private Tarcza _tarcza;
+
+    public Bohater(String imie, Tarcza startTarcza){
+        _imie = imie;
+        _tarcza = startTarcza;
+    }
 
 }

@@ -4,7 +4,7 @@ package GraRGB;
  * Created by Esiu on 2017-08-31.
  */
 public class Power10 extends TarczaDekorator {
-    private Tarcza _tarcza;
+    Tarcza _tarcza;
 
     public Power10(Tarcza tarcza){
         _tarcza = tarcza;

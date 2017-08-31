@@ -5,7 +5,7 @@ package GraRGB;
  */
 public class Power30 extends  TarczaDekorator {
 
-    private Tarcza _tarcza;
+    Tarcza _tarcza;
 
     public Power30(Tarcza tarcza){
         _tarcza = tarcza;
