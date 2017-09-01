@@ -9,6 +9,8 @@ public class Main {
         RadioFM rfm = new RadioFM(8);
         AnalogToDigitalAdapter adapter = new AnalogToDigitalAdapter(rfm);
         int[]zzz = adapter.getDigital();
-        System.out.println(adapter);
+        adapter.printDigital();
+
+
     }
 }
