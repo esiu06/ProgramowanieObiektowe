@@ -17,7 +17,7 @@ public class MojPanelRys extends JPanel{
             int nienieski = (int) (Math.random() * 256);
             Color kolorLosowy = new Color(czerwony,zielony,nienieski);
             zdarzenie.setColor(kolorLosowy);
-            zdarzenie.fillOval(140, 120, 300, 300);
+            zdarzenie.fillOval(140, 120, 150, 150);
         }
     }
 
